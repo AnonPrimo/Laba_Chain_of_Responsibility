@@ -94,7 +94,7 @@ public:
 				{
 					cout << "You input incorrect data"; 
 					break;
-				}
+				}///xjfzj;
 			}
 
 		}
