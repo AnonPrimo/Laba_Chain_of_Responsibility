@@ -47,6 +47,21 @@ public:
 	}
 };
 
+class Phone : public SignUp
+{
+public:
+	void H(string s)
+	{
+		if (s.length != 10)
+			SignUp::H(s);
+		for (int i = 0; i < s.length; ++i)
+		{
+			if (s[i] != (s[i] >= '0' && s[i] <= '9'))
+				SignUp::H(s);
+		}
+	}
+};
+
 int main() 
 {
 
