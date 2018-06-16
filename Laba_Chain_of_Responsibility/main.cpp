@@ -1,117 +1,56 @@
-#pragma once
 #include <iostream>
 #include <string>
 using namespace std;
 
-class Base
+class SignUp
 {
-	Base* next;
+	SignUp *next;
 public:
-	Base() { next = 0; }
-	void Add(Base* n) 
+	SignUp() { next = 0; }
+	void SetNext(SignUp *n)
 	{
-		if (next)
-			next->Add(n);
-		else
-			next = n;
+		next = n;
 	}
-	
-	virtual void h1(string s)
+	virtual void H(string s)
 	{
-		next->h1(s);
-	}
-
-	virtual void h2(int i)
-	{
-		next->h2(i);
+		next->H(s);
 	}
 };
 
-
-class Cl : public Base
+class Log : public SignUp
 {
-	int i = 0;
-	string s = "";
 public:
-	Cl(int i1) { i = i1; }
-	Cl(string i1) { s = i1; }
-	Cl() { i = 0; s = ""; }
-
-	virtual void H1()
+	void H(string s)
 	{
-		cout << s << endl;
-	}
-
-	virtual void H2()
-	{
-		cout << i << endl;
-	}
-
-	void Check()
-	{
-		if (s != "")
+		for (int i = 0; i < s.length; ++i)
 		{
-			H1();
-			h1(s);
+			if (s[i] >= 0 && s[i] <= 47 || s[i] >= 58 && s[i] <= 64 || s[i] >= 91 && s[i] <= 96 || s[i] >= 123 && s[i] <= 0)
+				SignUp::H(s);
 		}
-		else
-			if (i != 0)
-			{
-				H2();
-				h2(i);
-			}
 	}
 };
 
-class Log
+class Email : public SignUp
 {
-	int i = 0;
-	string s = "";
+	int c = 0;
 public:
-	Log(int i1) { i = i1; }
-	Log(string i1) { s = i1; }
-	Log() { i = 0; s = ""; }
-
-	virtual void H1()
+	void H(string s)
 	{
-		cout << s << endl;
-	}
-
-	virtual void H2()
-	{
-		cout << i << endl;
-	}
-
-	void Check()
-	{
-		if (s != "")
+		for (int i = 0; i < s.length; ++i)
 		{
-			for (int j = 0; j <= s.length; j++)
-			{
-				if (s[j] == '-' || s[j] >= '0' && s[j] <= '9' || s[j] >= 'A' && s[j] <= 'Z' || s[j] >= 'a' && <= 'z')
-					continue;
-				else
-				{
-					cout << "You input incorrect data"; 
-					break;
-				}///xjfzj;
-			}
-
+			if (s[i] == '@') c++;
+			if (s[i] >= 0 && s[i] <= 47 || s[i] >= 58 && s[i] < 64 || s[i] >= 91 && s[i] <= 96 || s[i] >= 123 && s[i] <= 0)
+				SignUp::H(s);
 		}
-		else
-			if (i != 0)
-			{
-				H2();
-			}
+		if (c != 1)
+			SignUp::H(s);
 	}
 };
 
-
-void main()
+int main() 
 {
 
 
 
-	cin.get();
-	cin.get();
+	system("pause");
 }
